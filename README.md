@@ -10,7 +10,7 @@ PS Vita ana ekranında (LiveArea) **klasör içinde klasör** kullanmayı sağla
 
 - **İç içe klasör:** bir klasörün içindeki klasörü açabilirsin. En fazla **2 seviye** var: üst klasör ve onun içinde bir klasör. Daha derindeki bir klasöre dokunmak yoksayılır.
 - **Geri dönüş:** iç klasördeyken O tuşu ya da boşluğa dokunmak üst klasöre döner.
-- **Klasörü klasöre koyma:** ana menüde, düzenleme modunda bir klasörü başka bir klasörün üstüne bırakabilirsin. titleId'si boş klasörler (eklentiden önce oluşturulmuş, `fixtid` yapılmamış) bırakılamaz, yerine döner.
+- **Klasörü klasöre koyma:** ana menüde, düzenleme modunda bir klasörü başka bir klasörün üstüne bırakabilirsin. titleId'si boş klasörler (eklentiden önce oluşturulmuş ve kurulum uygulamasıyla titleId verilmemiş) bırakılamaz, yerine döner.
 - **Klasör içinden alt klasöre uygulama atma:** Test A'nın içindeyken bir uygulamayı Test B'nin üstüne bırakırsan uygulama Test B'ye girer. Klasör bırakılamaz, yerine döner; böylece 3. seviye oluşmaz.
 - **İç klasörü düzenleme:** iç klasörün içinde öğelerin yerini değiştirebilir, uygulama çıkarabilir, klasörün adını değiştirebilirsin. Yeni ad kalıcıdır.
 - **Kurulum uygulaması:** `nestfolder_kurulum.vpk` eklentiyi kurar, günceller, kaldırır; ilk açılışta `app.db` ve `config.txt` dosyalarını bir kez yedekler.
@@ -108,23 +108,6 @@ Eski test sürümlerinin aldığı `ux0:data/nestfolder/backup/app.db.1..3` dosy
 - Açılışta sorun olursa Vita'yı **L tuşu basılı** açarak eklentileri devre dışı bırak, sonra `config.txt`'den satırı kaldır.
 - Ana ekran düzeni bozulursa kurulum uygulamasında **İlk yedeğe dön**'ü seç. Uygulama açılmıyorsa VitaShell ile `ux0:data/nestfolder/first_backup/app.db` (ya da son işlemden önceki hal için `ux0:data/nestfolder/installer/orig.db`) dosyasını `ur0:shell/db/` içine **`app.db` adıyla** kopyala ve yeniden başlat.
 - Eklenti kaldırılmadan iç içe klasöre dokunmak Shell'i kilitler; eklentiyi kaldırmak için kurulum uygulamasının **Kaldır** seçeneğini kullan, o iç klasörleri önce ana menüye çıkarır.
-
-## Yardımcı araç: tools/vita_nest.py
-
-Kurulum uygulaması bu aracın işini Vita'da yapar; araç yalnızca incelemek için kaldı. Bilgisayarda çalışır (Python 3, ek paket gerekmez). Orijinal dosyayı hiç değiştirmez; her zaman yeni bir dosya üretir ve `integrity_check` ile doğrular.
-
-| Komut | Açıklama |
-|---|---|
-| `inspect app.db` | Sayfaları ve klasörleri, içerikleriyle listeler. |
-| `fixtid app.db` | titleId'si boş tüm klasörlere titleId verir (`app_fix.db`). |
-| `settid app.db --folder <no/ad> --tid FLDRnnnnn` | Tek bir klasöre titleId verir. Ana sayfadaki klasör için `--ana-sayfa` ekle. |
-| `nest app.db --parent <no> --child <no>` | Bir klasörü başka bir klasörün içine taşır. titleId'si boş klasörü ve 2 seviyeyi aşan taşımayı reddeder. |
-
-Kullanım:
-
-1. Vita'dan `ur0:shell/db/app.db` dosyasını bilgisayara al ve yedekle.
-2. Komutu çalıştır, örneğin `python vita_nest.py fixtid app.db`.
-3. Çıktıda `SONUC: Guvenli` görürsen oluşan dosyayı Vita'ya **tam olarak `app.db` adıyla** `ur0:shell/db/` içine kopyala ve yeniden başlat.
 
 ## Derleme
 
