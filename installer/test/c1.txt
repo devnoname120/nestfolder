@@ -1,0 +1,10 @@
+# taiHEN config
+# Comments
+*KERNEL
+ur0:tai/henkaku.skprx
+*main
+ur0:tai/henkaku.suprx
+ur0:tai/other.suprx
+
+*NPXS10015
+ur0:tai/henkaku.suprx

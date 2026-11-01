@@ -1,0 +1,74 @@
+# nestfolder: otomatik derleme ve sürüm yayını
+#
+# - main dalına her push ve her pull request: eklentiler + kurulum VPK'sı
+#   derlenir, PC testleri çalışır, çıktılar "Artifacts" olarak indirilebilir.
+# - "v" ile başlayan bir etiket push edilince (ör. v1.0.1): aynı derleme
+#   yapılır ve GitHub Releases'te dosyalarla birlikte bir sürüm yayınlanır.
+# - Actions sekmesinden "Run workflow" ile elle de çalıştırılabilir.
+
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # sürüm yayınlamak için
+
+jobs:
+  vita:
+    name: Vita build
+    runs-on: ubuntu-latest
+    # VitaSDK'nın resmi Docker imajı. Tekrarlanabilir derleme için bir etikete
+    # sabitlenebilir, ör. vitasdk/vitasdk:2026.08-20260815
+    container: vitasdk/vitasdk:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build tools
+        run: |
+          if ! command -v cmake >/dev/null 2>&1 || ! command -v make >/dev/null 2>&1; then
+            if command -v apt-get >/dev/null 2>&1; then
+              apt-get update && apt-get install -y --no-install-recommends cmake make
+            elif command -v apk >/dev/null 2>&1; then
+              apk add --no-cache cmake make
+            fi
+          fi
+          echo "VITASDK=$VITASDK"
+          cmake --version | head -1
+
+      - name: Build
+        run: |
+          cmake -S . -B build
+          cmake --build build -j"$(nproc)"
+
+      - name: Collect
+        run: |
+          mkdir -p dist
+          cp build/nestfolder_kurulum.vpk build/nestfolder.suprx dist/
+          cd dist && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nestfolder-${{ github.sha }}
+          path: dist/*
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+
+  tests:
+    name: PC tests (installer logic)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Dependencies
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libsqlite3-dev
+      - name: Run tests
+        run: bash installer/test/ci_test.sh

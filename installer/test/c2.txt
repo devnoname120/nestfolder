@@ -1,0 +1,8 @@
+*KERNEL
+ur0:tai/henkaku.skprx
+*main
+ur0:tai/nestfolder.suprx
+ur0:tai/henkaku.suprx
+# ur0:tai/nestfolder.suprx
+*NPXS10015
+ux0:tai/NestFolder.suprx

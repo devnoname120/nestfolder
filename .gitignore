@@ -1,0 +1,26 @@
+# derleme
+build/
+build_local/
+*.elf
+*.velf
+*.self
+*.o
+
+# kisisel dosyalar ve firmware/bellek dokumleri: depoya EKLEME
+*.db
+*.db-journal
+*.bin
+snap_*/
+log.txt
+log.prev.txt
+
+# PC testleri
+installer/test/test_main
+installer/test/sim
+installer/test/*.ppm
+
+# ortam
+__pycache__/
+.vscode/
+.DS_Store
+Thumbs.db

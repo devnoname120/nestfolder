@@ -1,0 +1,2 @@
+*KERNEL
+ur0:tai/henkaku.skprx
