@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3
+
+- Added support for retail firmware 3.60 through 3.74.
+- Added support for devkit firmware 3.600.011 through 3.730.011.
+- SceShell layouts are selected by both loaded segment sizes, and every private
+  hook site is still validated before the corresponding feature is enabled.
+
 ## 1.0.2
 
 - Nested folder icons now refresh without a restart. When you change the contents
