@@ -54,8 +54,7 @@ The installer is a small Vita app that copies the plugin, edits `config.txt` and
 updates `app.db` (the home screen database) safely, with a backup.
 
 This project was made with heavy help from an AI assistant (Claude by Anthropic).
-I decided what it should do and tested every build on my own Vita; the code and
-the reverse engineering of the Shell were done together with the AI.
+I decided what it should do and tested every build on my own Vita.
 
 ## Build
 
