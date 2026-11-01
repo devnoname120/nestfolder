@@ -55,18 +55,6 @@ updates `app.db` (the home screen database) safely, with a backup.
 
 This project was made with heavy help from an AI assistant (Claude by Anthropic).
 I decided what it should do and tested every build on my own Vita.
-
-## Build
-
-Needs [VitaSDK](https://vitasdk.org).
-
-```
-cmake -S . -B build
-cmake --build build
-```
-
-GitHub Actions builds every push and publishes a release for every `v*` tag.
-
 ## License
 
 See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
