@@ -48,8 +48,8 @@
 #include "vfs_sceio.h"
 #include "vsqlite.h"
 
-#define APP_VERSION    "1.0.1"
-#define PLUGIN_VERSION "1.0.1"
+#define APP_VERSION    "1.0.2"
+#define PLUGIN_VERSION "1.0.2"
 
 int g_tr;   /* lang.h */
 

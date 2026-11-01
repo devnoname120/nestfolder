@@ -39,7 +39,7 @@ nest_create_self(nestfolder.suprx nestfolder CONFIG exports.yml UNSAFE)
 #  Kurulum uygulamasi (VPK); eklenti payload/ altina gomulur
 # ------------------------------------------------------------------
 set(INSTALLER_TITLEID "NESTF0001")
-set(INSTALLER_VERSION "01.01")
+set(INSTALLER_VERSION "01.02")
 
 add_executable(nestfolder_installer
     installer/src/main.c
@@ -53,7 +53,7 @@ target_link_libraries(nestfolder_installer
 nest_create_self(eboot.bin nestfolder_installer UNSAFE)
 vita_create_vpk(nestfolder.vpk ${INSTALLER_TITLEID} eboot.bin
     VERSION ${INSTALLER_VERSION}
-    NAME "nestfolder Kurulum"
+    NAME "nestfolder"
     FILE ${CMAKE_CURRENT_BINARY_DIR}/nestfolder.suprx payload/nestfolder.suprx
     FILE installer/sce_sys/icon0.png sce_sys/icon0.png
     FILE installer/sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png

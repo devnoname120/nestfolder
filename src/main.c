@@ -1,5 +1,5 @@
 /*
- * nestfolder 1.0.1 - PS Vita (3.65 retail) LiveArea ic ice klasor eklentisi
+ * nestfolder 1.0.2 - PS Vita (3.65 retail) LiveArea ic ice klasor eklentisi
  *
  * Ozet:
  *  - Klasor icinde klasor acma (en fazla 2 seviye). Ic klasor acilirken
@@ -981,7 +981,7 @@ static int setup(SceSize args, void *argp)
 	sceIoMkdir(NEST_DATA_DIR, 0777);
 	sceIoRemove(NEST_DATA_DIR "/log.prev.txt");
 	sceIoRename(NEST_LOG_PATH, NEST_DATA_DIR "/log.prev.txt");
-	nest_log("[nest] nestfolder 1.0.1");
+	nest_log("[nest] nestfolder 1.0.2");
 
 	SceIoStat st;
 	if (sceIoGetstat(NEST_DATA_DIR "/delay20", &st) >= 0) {

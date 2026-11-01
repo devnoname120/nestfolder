@@ -14,14 +14,17 @@ def folder(d, x, y, w, h, c, tab):
     d.rounded_rectangle([x, y + h * 0.15, x + w, y + h], radius=h * 0.1, fill=c)
 
 def icon(size):
+    """Vita balonu yuvarlak: klasor, cember icinde kenarlardan bosluk birakir."""
     s = 4
     im = Image.new("RGB", (size * s, size * s), BG)
     d = ImageDraw.Draw(im)
     W = size * s
-    folder(d, W * 0.12, W * 0.18, W * 0.76, W * 0.64, FOLD, FOLD2)
-    folder(d, W * 0.36, W * 0.44, W * 0.4, W * 0.32, BAR, (30, 52, 78))
-    d.polygon([(W * 0.52, W * 0.66), (W * 0.62, W * 0.66), (W * 0.57, W * 0.72)], fill=WHITE)
-    d.rectangle([W * 0.55, W * 0.53, W * 0.59, W * 0.66], fill=WHITE)
+    # dis klasor: genislik %56, yukseklik %46, merkezde
+    folder(d, W * 0.22, W * 0.27, W * 0.56, W * 0.46, FOLD, FOLD2)
+    # ic klasor ve ok
+    folder(d, W * 0.40, W * 0.46, W * 0.30, W * 0.24, BAR, (30, 52, 78))
+    d.polygon([(W * 0.515, W * 0.625), (W * 0.585, W * 0.625), (W * 0.55, W * 0.665)], fill=WHITE)
+    d.rectangle([W * 0.537, W * 0.53, W * 0.563, W * 0.625], fill=WHITE)
     return im.resize((size, size), Image.LANCZOS)
 
 def save(im, path):
@@ -34,16 +37,14 @@ d = ImageDraw.Draw(bg)
 d.rectangle([0, 0, 840, 8], fill=BAR)
 bg.paste(icon(200), (60, 150))
 f1, f2 = ImageFont.truetype(FONT, 44), ImageFont.truetype(FONT.replace("-Bold", ""), 24)
-d.text((300, 170), "nestfolder", font=f1, fill=WHITE)
-d.text((300, 230), "Klasör içinde klasör", font=f2, fill=FOLD)
-d.text((300, 275), "Kur · güncelle · kaldır", font=f2, fill=(170, 170, 170))
+d.text((300, 185), "nestfolder", font=f1, fill=WHITE)
+d.text((300, 245), "Folders inside folders", font=f2, fill=FOLD)
 save(bg, os.path.join(out, "livearea/contents/bg.png"))
 
 st = Image.new("RGB", (280, 158), BAR)
 d = ImageDraw.Draw(st)
 st.paste(icon(96), (20, 31))
-d.text((128, 52), "nestfolder", font=ImageFont.truetype(FONT, 24), fill=WHITE)
-d.text((128, 84), "Kurulum", font=ImageFont.truetype(FONT.replace("-Bold", ""), 20), fill=FOLD)
+d.text((128, 64), "nestfolder", font=ImageFont.truetype(FONT, 24), fill=WHITE)
 save(st, os.path.join(out, "livearea/contents/startup.png"))
 
 open(os.path.join(out, "livearea/contents/template.xml"), "w").write(

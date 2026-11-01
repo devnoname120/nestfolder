@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2
+
+- Installer: the app is now called "nestfolder" on the home screen and in its
+  LiveArea; LiveArea images in English; the icon's folder no longer touches the
+  edge of the round bubble.
+- Plugin: no changes besides the version number.
+
 ## 1.0.1
 
 - Nested folder icons now refresh without a restart. When you change the contents
