@@ -41,17 +41,17 @@ nest_create_self(nestfolder.suprx nestfolder CONFIG exports.yml UNSAFE)
 set(INSTALLER_TITLEID "NESTF0001")
 set(INSTALLER_VERSION "01.01")
 
-add_executable(nestfolder_kurulum
+add_executable(nestfolder_installer
     installer/src/main.c
     installer/src/db.c
     installer/src/cfg.c
     installer/src/vfs_sceio.c)
-target_include_directories(nestfolder_kurulum PRIVATE installer/src)
-target_link_libraries(nestfolder_kurulum
+target_include_directories(nestfolder_installer PRIVATE installer/src)
+target_link_libraries(nestfolder_installer
     SceSqlite_stub SceSysmodule_stub SceDisplay_stub SceCtrl_stub
     ScePower_stub SceShellSvc_stub SceIofilemgr_stub SceAppUtil_stub)
-nest_create_self(eboot.bin nestfolder_kurulum UNSAFE)
-vita_create_vpk(nestfolder_kurulum.vpk ${INSTALLER_TITLEID} eboot.bin
+nest_create_self(eboot.bin nestfolder_installer UNSAFE)
+vita_create_vpk(nestfolder.vpk ${INSTALLER_TITLEID} eboot.bin
     VERSION ${INSTALLER_VERSION}
     NAME "nestfolder Kurulum"
     FILE ${CMAKE_CURRENT_BINARY_DIR}/nestfolder.suprx payload/nestfolder.suprx

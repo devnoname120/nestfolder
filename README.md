@@ -18,7 +18,7 @@ manage it like any other folder.
 ## Install
 
 1. In HENkaku settings, turn on **Enable Unsafe Homebrew**.
-2. Install `nestfolder_kurulum.vpk` from the [Releases](../../releases) page with VitaShell and open it.
+2. Install `nestfolder.vpk` from the [Releases](../../releases) page with VitaShell and open it.
 3. Choose **Install / update**. The Vita restarts when it's done.
 
 On first start the installer backs up your `app.db` and `config.txt` to
@@ -54,7 +54,20 @@ The installer is a small Vita app that copies the plugin, edits `config.txt` and
 updates `app.db` (the home screen database) safely, with a backup.
 
 This project was made with heavy help from an AI assistant (Claude by Anthropic).
-I decided what it should do and tested every build on my own Vita.
+I decided what it should do and tested every build on my own Vita; the code and
+the reverse engineering of the Shell were done together with the AI.
+
+## Build
+
+Needs [VitaSDK](https://vitasdk.org).
+
+```
+cmake -S . -B build
+cmake --build build
+```
+
+GitHub Actions builds every push and publishes a release for every `v*` tag.
+
 ## License
 
 See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
