@@ -1,5 +1,5 @@
 /*
- * nestfolder 1.0.3 - PS Vita (3.60+ retail/devkit) LiveArea ic ice klasor eklentisi
+ * nestfolder 1.0.3 - PS Vita (bilinen 3.60+ SceShell duzenleri) LiveArea ic ice klasor eklentisi
  *
  * Ozet:
  *  - Klasor icinde klasor acma (en fazla 2 seviye). Ic klasor acilirken
@@ -44,8 +44,8 @@
  * Yedek: 1.0.0'dan itibaren eklenti app.db yedegi almaz; ilk yedegi kurulum
  * uygulamasi (installer/) bir kez alir.
  *
- * SceShell segment boyutlarina gore profil secilir; her kanca noktasi
- * secilen surumun beklenen koduyla karsilastirilir.
+ * SceShell segment boyutlari ve sabit kod imzalariyla profil secilir; her
+ * kanca noktasi secilen surumun beklenen koduyla karsilastirilir.
  * Ayar: ux0:data/nestfolder/disable, .../snapshot, .../delay20
  */
 #include <psp2/kernel/modulemgr.h>
