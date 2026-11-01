@@ -22,6 +22,6 @@
 - The plugin no longer makes its own `app.db` backups.
 - Log lines in English.
 
-## Development builds (2.x)
+## Before 1.0.0
 
-Internal test versions before 1.0.0, see the "Değişiklikler" section of `README.md`.
+Internal test builds, not released.
